@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  tools:
+    image: mule_rtfctl_gocd/mule_rtf:latest
+    volumes:
+      - /var/run/secrets/eks.amazonaws.com/serviceaccount/token:/tmp/token:ro
+    extra_hosts:
+      - "sts.ap-south-2.amazonaws.com:10.220.112.58"
+      - "ets.ap-south-2.amazonaws.com:10.220.112.15"
+    environment:
+      - AWS_WEB_IDENTITY_TOKEN_FILE=/tmp/token
+    tty: true
+    stdin_open: true
